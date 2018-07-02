@@ -1,1 +1,6 @@
 https://dev-blog.apollodata.com/full-stack-react-graphql-tutorial-582ac8d24e3b
+
+https://medium.com/codingthesmartway-com-blog/creating-a-graphql-server-with-node-js-and-express-f6dddc5320e1
+
+https://github.com/iKonrad/react-express-graphql-boilerplate
+

@@ -33,3 +33,14 @@ class GraphQLClient {
 }
 
 export default GraphQLClient;
+
+/*
+To invoke this, you can import below -
+
+import GraphQLClient from './GraphQLClient';
+
+And then create Object and call method like 
+
+var graphQLClient = new GraphQLClient();
+graphQLClient.getAllUsers();
+*/

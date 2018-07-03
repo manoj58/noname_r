@@ -1,6 +1,6 @@
 # noname_r
 
-
+--Users no param--
 query getAllUsers {
   getAllUsers {
     vzId
@@ -13,27 +13,7 @@ query getAllUsers {
   }
 }
 
-mutation CreateUSERForTest {
-  addUser(
-    vzId: "v222222", 
-    firstName: "MANOJ",
-    lastName: "SEKAR", 
-    email: "test@VERIZON.COM",
-  	portfolio:"VES",
-    location: "hYD",
-  	phoneNo:"111111",
-  ) {
-    vzId
-    firstName
-    lastName
-    email
-    portfolio
-    location
-    phoneNo
-  }
-}
-
-
+--Users one param--
 query getUserbyLocation {
   getUserbyLocation(location:"hYD") {
     vzId
@@ -45,7 +25,7 @@ query getUserbyLocation {
     phoneNo
   }
 }
-
+--Users one or more param--
 query getUserbyLocation {
   getUserbyPortfolio(portfolio:"VES",vzId: "v222222"
   ) {
@@ -58,3 +38,36 @@ query getUserbyLocation {
     phoneNo
   }
 }
+
+---------------------------------------------------------------------------------------------------------------------------------
+query getEventQuery {
+  getAllEvents {
+    eventId
+    eventName
+    eventType
+    eventStartString
+    eventEndString
+    nominationStartString
+    nominationEndString
+    minTeamSize
+    maxTeamSize
+    eventPortfolio
+    eventLocation
+    eventPOCMail
+    viewCount
+    likesCount
+  }
+}
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+query geRegistratioQuery {
+  getAllRegistration {
+    vzId
+    eventId
+    teamId
+    teamName
+  }
+}
+
+

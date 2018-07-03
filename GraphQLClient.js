@@ -30,6 +30,35 @@ export class GraphQLClient {
         return this.userInfo;
     }
 
+    getAllEvents() {
+        let GET_EVENTS = gql`
+        query getEventQuery {
+            getAllEvents {
+              eventId
+              eventName
+              eventType
+              eventStartDate
+              eventEndDate
+              nominationStartDate
+              nominationEndDate
+              minTeamSize
+              maxTeamSize
+              eventPortfolio
+              eventLocation
+              eventPOCMail
+              viewCount
+              likesCount
+            }
+          } `;
+
+        this.client.query({
+            query: GET_EVENTS
+        }).then(results => {
+            this.setData(results.data)
+        });
+        return this.userInfo;
+    }
+
     addEvent(eventId, eventName, eventType, eventStartDate,eventEndDate, nominationStartDate, nominationEndDate, minTeamSize, maxTeamSize, eventPortfolio, eventLocation, eventPOCMail) {
         let ADD_EVENT = gql`
         mutation CreateEventQuery($eventId: String!, $eventName: String!, $eventType: String!, $eventStartDate: Date!, $eventEndDate: Date!, $nominationStartDate: Date!, $nominationEndDate: Date!, $minTeamSize: Int!, $maxTeamSize: Int!, $eventPortfolio: String!, $eventLocation: String!, $eventPOCMail: String!) {
@@ -90,6 +119,9 @@ var graphQLClient = new GraphQLClient();
 
 Get ALl Users
 graphQLClient.getAllUsers();
+
+Get ALl Events
+graphQLClient.getAllEvents();
 
 Add New Event
 graphQLClient.addEvent("e010", "test", "test", "2018-07-10T18:30:00.000Z", "2018-07-11T18:30:00.000Z", "2018-07-01T18:30:00.000Z", "2018-07-03T18:30:00.000Z", 1, 1, "test", "test", "test");

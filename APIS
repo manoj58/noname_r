@@ -1,0 +1,34 @@
+
+mutation CreateEventQuery {
+  addEvent(
+	eventId:"e001",
+  eventName:"test",
+  eventType:"test",
+  eventStartString:"test",
+  eventEndString:"test",
+  nominationStartString:"test",
+  nominationEndString:"test",
+  minTeamSize: 1,
+  maxTeamSize: 1,
+  eventPortfolio:"test",
+  eventLocation:"test",
+  eventPOCMail:"test",
+  viewCount: 1,
+  likesCount: 1
+  ) {
+   eventId,
+  eventName,
+  eventType,
+  eventStartString,
+  eventEndString,
+  nominationStartString,
+  nominationEndString,
+  minTeamSize,
+  maxTeamSize,
+  eventPortfolio,
+  eventLocation,
+  eventPOCMail,
+  viewCount,
+  likesCount
+  }
+}

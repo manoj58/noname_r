@@ -4,6 +4,7 @@ import ApolloClient, { gql } from 'apollo-boost';
 class GraphQLClient {
 
     userInfo;
+    eventInfo;
     
     client = new ApolloClient({
         uri: 'http://10.74.22.231:3001/graphql'    
@@ -28,8 +29,28 @@ class GraphQLClient {
     }).then(results => {
        this.setData(results.data)
     });
+        
     return this.userInfo;
-    
+    }
+
+    addEvent() {
+        let ADD_EVENT = gql`
+        query queryDetails {
+            user {
+            vzId
+            firstName
+            lastName
+            }
+        } `;
+
+    this.client.query({
+        query: ADD_EVENT
+    }).then(results => {
+       this.setData(results.data)
+    });
+        
+    return this.userInfo;
+    }
 }
 
 export default GraphQLClient;

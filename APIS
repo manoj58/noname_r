@@ -1,4 +1,28 @@
 
+--CREATEUSER--
+mutation CREATEUSERQUERY {
+  addUser(
+    vzId: "v222222", 
+    firstName: "MANOJ",
+    lastName: "SEKAR", 
+    email: "test@VERIZON.COM",
+  	portfolio:"VES",
+    location: "hYD",
+  	phoneNo:"111111",
+  ) {
+    vzId
+    firstName
+    lastName
+    email
+    portfolio
+    location
+    phoneNo
+  }
+}
+
+
+
+--CreateEventQuery--
 mutation CreateEventQuery {
   addEvent(
 	eventId:"e001",
@@ -32,3 +56,14 @@ mutation CreateEventQuery {
   likesCount
   }
 }
+
+--add registration--
+mutation addRegistrationQuery {
+  addRegistration(vzId: "v1111111", eventId: "e001", teamId: "t00001", teamName: "no name") {
+    vzId
+    eventId
+    teamId
+    teamName
+  }
+}
+

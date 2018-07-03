@@ -23,22 +23,23 @@ mutation CREATEUSERQUERY {
 
 
 --CreateEventQuery--
+
 mutation CreateEventQuery {
   addEvent(
-	eventId:"e001",
-  eventName:"test",
-  eventType:"test",
-  eventStartString:"test",
-  eventEndString:"test",
-  nominationStartString:"test",
-  nominationEndString:"test",
+  eventId:1,
+  eventName:"Reactathon Future",
+  eventType:"Technology/Innovation",
+  eventStartDate:"08/02/2018",
+  eventEndDate:"08/04/2018",
+  nominationStartDate:"07/01/2018",
+  nominationEndDate:"07/30/2018",
   minTeamSize: 1,
-  maxTeamSize: 1,
-  eventPortfolio:"test",
-  eventLocation:"test",
-  eventPOCMail:"test",
-  viewCount: 1,
-  likesCount: 1
+  maxTeamSize: 5,
+  eventPortfolio:"ALL",
+  eventLocation:"All",
+  eventPOCMail:"karpagam.gurusamy@verizon.com",
+  viewCount: 0,
+  likesCount: 0
   ) {
    eventId,
   eventName,
@@ -56,6 +57,7 @@ mutation CreateEventQuery {
   likesCount
   }
 }
+
 
 --add registration--
 mutation addRegistrationQuery {

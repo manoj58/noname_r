@@ -66,4 +66,19 @@ mutation addRegistrationQuery {
     teamName
   }
 }
+**********************************************************************************************************************
 
+mutation upvoteEventQuery {
+  upvoteEvent(eventId: "E002") {
+    likesCount
+  }
+}
+result is {
+  "data": {
+    "upvoteEvent": [
+      {
+        "likesCount": 20
+      }
+    ]
+  }
+}

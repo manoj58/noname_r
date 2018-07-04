@@ -232,20 +232,35 @@ type Query {
     eMail: String
   ): [VZUser!]
 
-getAllEventDetails (
+
+  getAllEventDetails (
   problemId: Int,
   eventId: Int,
   problemStatement: String,
   eventPOCMail: String,
   Rules: String
 ): [EventDetail!]
+  getEventIdDetails (
+  problemId: Int,
+  eventId: Int!,
+  problemStatement: String,
+  eventPOCMail: String,
+  Rules: String
+): [EventDetail!]
 
 getAllEventPrizes(
-   prizeId: Int,
-   eventId: Int,
-   prize: String,
-   prizeName: String
-  ): [EventPrize!]
+  prizeId: Int,
+  eventId: Int,
+  prize: String,
+  prizeName: String
+ ): [EventPrize!]
+
+getEventIdPrizes(
+  prizeId: Int,
+  eventId: Int!,
+  prize: String,
+  prizeName: String
+ ): [EventPrize!]
 
   getAllEventResults (
   prizeId: Int,
@@ -253,6 +268,14 @@ getAllEventPrizes(
   teamId: Int
 
 ): [EventResult!]
+
+getEventIdResults (
+  prizeId: Int,
+  eventId: Int!,
+  teamId: Int
+
+): [EventResult!]
+
 
 }
 

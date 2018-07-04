@@ -45,6 +45,28 @@ type Registration {
 }
 
 
+type EventDetail {
+  problemId: Int
+  eventId: Int
+  problemStatement: String
+  eventPOCMail: String
+  Rules: String
+}
+
+type EventPrize {
+   prizeId: Int
+   eventId: Int
+   prize: String
+   prizeName: String
+}
+
+type EventResult {
+  prizeId: Int
+  eventId: Int
+  teamId: Int
+
+}
+
 type Query {
   getAllUsers(
     vzId: String,

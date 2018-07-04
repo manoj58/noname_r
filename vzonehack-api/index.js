@@ -13,7 +13,7 @@ import Registration from './registrationmodel'
 import EventDetail from './eventdetailmodel'
 import EventPrize from './eventprizemodel'
 import EventResult from './eventresultmodel'
-
+import EventRegistartion from './eventregistrationmodel'
 
 const env = require('dotenv').config()
 const cors = require('cors')
@@ -24,6 +24,7 @@ const schema = makeExecutableSchema({
 })
 
 
+//var COMPOSE_URI='mongodb://localhost:27017/myFirstDB'
 var COMPOSE_URI='mongodb://localhost:27017/vzonehack'
 
 mongoose.connect(COMPOSE_URI , function (error) {
@@ -33,6 +34,7 @@ mongoose.connect(COMPOSE_URI , function (error) {
 
 
 
+//const PORT = 3000
 const PORT = 3002
 
 const app = express()
@@ -42,7 +44,7 @@ app.use(cors())
 app.use(
   '/graphql',
   bodyParser.json(),
- graphqlExpress({ schema, context: { User,Event,Registration,VZUser,EventDetail,EventPrize,EventResult } })
+  graphqlExpress({ schema, context: { User,Event,Registration,VZUser,EventDetail,EventPrize,EventResult,EventRegistartion } })
 )
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))

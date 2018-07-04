@@ -9,42 +9,6 @@ type VZUser {
   eMail: String
 }
 
-type User {
-  vzId: String
-  firstName: String
-  lastName: String
-  email: String
-  portfolio: String
-  location: String
-  phoneNo: String
-}
-
-type Event {
-  eventId: String
-  eventName: String
-  eventType: String
-  eventStartDate: Date
-  eventEndDate: Date
-  nominationStartDate: Date
-  nominationEndDate: Date
-  minTeamSize: Int
-  maxTeamSize: Int
-  eventPortfolio: String
-  eventLocation: String
-  eventPOCMail: String
-  multipleParticipationAllowed: Boolean
-  viewCount: Int
-  likesCount: Int
-}
-
-type Registration {
-  vzId: String
-  eventId: String
-  teamId: String
-  teamName: String
-}
-
-
 type EventDetail {
   problemId: Int
   eventId: Int
@@ -66,6 +30,51 @@ type EventResult {
   teamId: Int
 
 }
+
+
+type EventRegistration {
+  teamId: Int
+  eventId:Int
+  pocEmail: String
+  teamEmail: String
+  teamName: String
+}
+
+type User {
+  vzId: String
+  firstName: String
+  lastName: String
+  email: String
+  portfolio: String
+  location: String
+  phoneNo: String
+}
+
+type Event {
+  eventId: Int
+  eventName: String
+  eventType: String
+  eventStartDate: Date
+  eventEndDate: Date
+  nominationStartDate: Date
+  nominationEndDate: Date
+  minTeamSize: Int
+  maxTeamSize: Int
+  eventPortfolio: String
+  eventLocation: String
+  eventPOCMail: String
+  multipleParticipationAllowed: Boolean
+  viewCount: Int
+  likesCount: Int
+}
+
+type Registration {
+  vzId: String
+  eventId:Int
+  teamId: String
+  teamName: String
+}
+
 
 type Query {
   getAllUsers(
@@ -105,7 +114,7 @@ type Query {
     phoneNo: String
   ): [User!]!,
   getAllEvents(
-    eventId: String,
+    eventId:Int,
   eventName: String,
   eventType: String,
   eventStartDate: Date,
@@ -121,7 +130,7 @@ type Query {
   likesCount: Int
   ): [Event!]!,
   getEventsByLocation(
-    eventId: String,
+    eventId:Int,
   eventName: String,
   eventType: String,
   eventStartDate: Date,
@@ -137,7 +146,7 @@ type Query {
   likesCount: Int
   ): [Event!]!,
   getEventsByPortfolio(
-    eventId: String,
+    eventId:Int,
   eventName: String,
   eventType: String,
   eventStartDate: Date,
@@ -153,7 +162,7 @@ type Query {
   likesCount: Int
   ): [Event!]!,
   getUpcomingEvents(
-    eventId: String,
+    eventId: Int,
   eventName: String,
   eventType: String,
   eventStartDate: Date,
@@ -169,7 +178,7 @@ type Query {
   likesCount: Int
   ): [Event!]!,
   getOngoingEvents(
-    eventId: String,
+    eventId:Int,
   eventName: String,
   eventType: String,
   eventStartDate: Date,
@@ -185,7 +194,7 @@ type Query {
   likesCount: Int
   ): [Event!]!,
   getCompletedEvents(
-    eventId: String,
+    eventId:Int,
   eventName: String,
   eventType: String,
   eventStartDate: Date,
@@ -202,25 +211,25 @@ type Query {
   ): [Event!]!,
   getAllRegistration(
     vzId: String,
-  eventId: String,
+  eventId:Int,
   teamId: String,
   teamName: String
   ): [Registration!],
   getEventRegistration(
     vzId: String,
-  eventId: String!,
+  eventId: Int!,
   teamId: String,
   teamName: String
   ): [Registration!],
   getMyRegistration(
     vzId: String!,
-  eventId: String,
+  eventId:Int,
   teamId: String,
   teamName: String
   ): [Registration!],
   getMyTeam(
     vzId: String,
-  eventId: String!,
+  eventId: Int!,
   teamId: String!,
   teamName: String
   ): [Registration!],
@@ -233,6 +242,7 @@ type Query {
   ): [VZUser!]
 
 
+  
   getAllEventDetails (
   problemId: Int,
   eventId: Int,
@@ -276,6 +286,25 @@ getEventIdResults (
 
 ): [EventResult!]
 
+getAllEventRegistration (
+  teamId: Int
+  eventId:Int
+  pocEmail: String
+  teamEmail: String
+  teamName: String
+
+): [EventRegistration!]
+
+getEventIdRegistration (
+  teamId: Int
+  eventId:Int!
+  pocEmail: String
+  teamEmail: String
+  teamName: String
+
+): [EventRegistration!]
+
+
 
 }
 
@@ -291,7 +320,7 @@ type Mutation {
   ): User!
 
   addEvent(
-  eventId: Int,
+  eventId: Int!,
   eventName: String!,
   eventType: String!,
   eventStartDate: Date!,
@@ -307,26 +336,6 @@ type Mutation {
   likesCount: Int
   ): Event!
 
-  addEventDetail(
-    problemId: Int
-    eventId: Int!
-    problemStatement: String
-    eventPOCMail: String
-    Rules: String
-  ): EventDetail!
-
-  addEventPrize(
-     prizeId: Int
-     eventId: Int!
-     prize: String
-     prizeName: String
-  ): EventPrize!
-
-  addEventResult(
-    prizeId: Int
-    eventId: Int!
-    teamId: Int
-  ): EventResult!
 
   addEventAuto(
     eventId: Int,
@@ -345,7 +354,7 @@ type Mutation {
     likesCount: Int
     ): Event!
 
-upLikeCount(
+    upLikeCount(
     eventId: Int!
   ): [Event!]!
 
@@ -353,13 +362,41 @@ upLikeCount(
     eventId: Int!
   ): [Event!]!
 
-
   addRegistration(
     vzId: String!,
-  eventId: String!,
+  eventId: Int!,
   teamId: String!,
   teamName: String!
   ): Registration!
+
+  addEventRegistration(
+    teamId: Int
+    eventId:Int!
+    pocEmail: String!
+    teamEmail: String!
+    teamName: String!
+  ): EventRegistration!
+
+  addEventDetail(
+    problemId: Int
+    eventId: Int!
+    problemStatement: String!
+    eventPOCMail: String!
+    Rules: String!
+  ): EventDetail!
+
+  addEventPrize(
+     prizeId: Int
+     eventId: Int!
+     prize: String!
+     prizeName: String!
+  ): EventPrize!
+
+  addEventResult(
+    prizeId: Int!
+    eventId: Int!
+    teamId: Int!
+  ): EventResult!
 
   createUser(
     vzid: String!,

@@ -1,3 +1,4 @@
+
 export default {
   Query: {
     getAllUsers: async (parent, args, { User }) => {
@@ -46,7 +47,10 @@ export default {
       const events = await Event.find(args)
       var resp = []
       var current = new Date().getTime()
-      //if (!events === undefined) {
+     
+     
+     // if (!events === undefined) {
+      
         events.map(x => {
           var start = x.eventStartDate.getTime()
           var end = x.eventEndDate.getTime()
@@ -95,7 +99,8 @@ export default {
       const user = await VZUser.find(args)
       return user
     },
-     getAllEventDetails: async (parent, args, { EventDetail }) => {
+
+   getAllEventDetails: async (parent, args, { EventDetail }) => {
       const eventdetail = await EventDetail.find(args)
       return eventdetail
     },
@@ -124,6 +129,16 @@ export default {
     getEventIdResults: async (parent, args, { EventResult }) => {
       const eventresult = await EventResult.find(args)
       return eventresult
+    }, 
+
+    getAllEventRegistration: async (parent, args, { EventRegistration }) => {
+      const eventresult = await EventRegistration.find(args)
+      return eventresult
+    }, 
+
+    getEventIdRegistration: async (parent, args, { EventRegistration }) => {
+      const eventresult = await EventRegistration.find(args)
+      return eventresult
     },
   },
   Mutation: {
@@ -143,17 +158,9 @@ export default {
       const event = await new Event(args).save()
       event._id = event._id.toString()
       return event
+    },
 
-      
-    },
-   
-    addRegistration: async (parent, args, { Registration }) => {
-      const registration = await new Registration(args).save()
-      registration._id = registration._id.toString()
-      return registration
-    },
-    
-       addEventDetail: async (parent, args, { EventDetail }) => {
+    addEventDetail: async (parent, args, { EventDetail }) => {
       const eventdetail = await new EventDetail(args).save()
       eventdetail._id = eventdetail._id.toString()
       return eventdetail
@@ -167,6 +174,17 @@ export default {
       const eventresult = await new EventResult(args).save()
       eventresult._id = eventresult._id.toString()
       return eventresult
+    },
+    addEventRegistration: async (parent, args, { EventRegistration }) => {
+      const eventregistration = await new EventRegistration(args).save()
+      eventregistration._id = eventregistration._id.toString()
+      return eventregistration
+    },
+   
+    addRegistration: async (parent, args, { Registration }) => {
+      const registration = await new Registration(args).save()
+      registration._id = registration._id.toString()
+      return registration
     },
     upLikeCount: async (parent, args, { Event }) => {
       const events = await Event.find(args)
@@ -197,7 +215,6 @@ export default {
   
       return  events
     },
-
 
     /**createTalk: async (parent, args, { Talk }) => {
       const talk = await new Talk(args).save()

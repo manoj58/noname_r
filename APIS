@@ -27,7 +27,7 @@ mutation upvote {
 }
 
 
-mutation CreateEventQuery {
+mutation eventdetailsQuery {
   addEventDetail(eventId: 1, problemStatement: "problem sta", eventPOCMail: "kap", Rules: "no rules") {
     problemId
     eventId
@@ -36,6 +36,32 @@ mutation CreateEventQuery {
     Rules
   }
 }
+
+mutation eventprizeQuery {
+  addEventPrize(
+    eventId: 1,
+    prize: "cashhh", 
+    prizeName: "cash") {
+    prizeId
+    eventId
+    prize
+    prizeName
+  }
+}
+
+
+mutation eventResultQuery {
+  addEventResult(
+    eventId: 1,
+    teamId :1,
+    prizeId:1
+  ) { 
+    prizeId
+    eventId
+    teamId
+  }
+}
+
 
 
 --CREATEUSER--

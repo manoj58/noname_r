@@ -1,3 +1,30 @@
+mutation upvote {
+  upLikeCount(eventId: 1) {
+    eventId
+    viewCount
+    likesCount
+  }
+}
+                                        {
+                                          "data": {
+                                            "upLikeCount": [
+                                              {
+                                                "eventId": 1,
+                                                "viewCount": 0,
+                                                "likesCount": 3
+                                              }
+                                            ]
+                                          }
+                                        }
+
+
+mutation upvote {
+  upViewCount(eventId: 1) {
+    eventId
+    viewCount
+    likesCount
+  }
+}
 
 --CREATEUSER--
 mutation CREATEUSERQUERY {

@@ -262,6 +262,26 @@ type Mutation {
   likesCount: Int
   ): Event!
 
+  addEventDetail(
+    problemId: Int
+    eventId: Int!
+    problemStatement: String
+    eventPOCMail: String
+    Rules: String
+  ): EventDetail!
+
+  addEventPrize(
+     prizeId: Int
+     eventId: Int!
+     prize: String
+     prizeName: String
+  ): EventPrize!
+
+  addEventResult(
+    prizeId: Int
+    eventId: Int!
+    teamId: Int
+  ): EventResult!
 
   addEventAuto(
     eventId: Int,

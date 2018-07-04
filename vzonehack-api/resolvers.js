@@ -122,6 +122,22 @@ export default {
       registration._id = registration._id.toString()
       return registration
     },
+    
+     addEventDetail: async (parent, args, { User }) => {
+      const eventdetail = await new EventDetail(args).save()
+      eventdetail._id = eventdetail._id.toString()
+      return eventdetail
+    },
+    addEventPrize: async (parent, args, { User }) => {
+      const eventprice = await new EventPrize(args).save()
+      eventprice._id = eventprice._id.toString()
+      return eventprice
+    },
+    addEventResult: async (parent, args, { User }) => {
+      const eventresult = await new EventResult(args).save()
+      eventresult._id = eventresult._id.toString()
+      return eventresult
+    },
     upLikeCount: async (parent, args, { Event }) => {
       const events = await Event.find(args)
       var resp=[];

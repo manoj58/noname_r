@@ -95,6 +95,20 @@ export default {
       const user = await VZUser.find(args)
       return user
     },
+    getAllEventDetails: async (parent, args, { EventDetail }) => {
+      const eventdetail = await EventDetail.find(args)
+      return eventdetail
+    },
+    
+    getAllEventPrizes: async (parent, args, { EventPrize }) => {
+      const prize = await EventPrize.find(args)
+      return prize
+    },
+    
+    getAllEventResults: async (parent, args, { EventResult }) => {
+      const eventresult = await EventResult.find(args)
+      return eventresult
+    },
   },
   Mutation: {
     addUser: async (parent, args, { User }) => {

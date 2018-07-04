@@ -95,17 +95,33 @@ export default {
       const user = await VZUser.find(args)
       return user
     },
-    getAllEventDetails: async (parent, args, { EventDetail }) => {
+     getAllEventDetails: async (parent, args, { EventDetail }) => {
       const eventdetail = await EventDetail.find(args)
       return eventdetail
     },
+
+    getEventIdDetails: async (parent, args, { EventDetail }) => {
+      const eventdetail = await EventDetail.find(args)
+      return eventdetail
+    },
+    
     
     getAllEventPrizes: async (parent, args, { EventPrize }) => {
       const prize = await EventPrize.find(args)
       return prize
     },
+
+    getEventIdPrizes: async (parent, args, { EventPrize }) => {
+      const prize = await EventPrize.find(args)
+      return prize
+    },
     
     getAllEventResults: async (parent, args, { EventResult }) => {
+      const eventresult = await EventResult.find(args)
+      return eventresult
+    }, 
+
+    getEventIdResults: async (parent, args, { EventResult }) => {
       const eventresult = await EventResult.find(args)
       return eventresult
     },

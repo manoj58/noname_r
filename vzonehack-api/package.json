@@ -36,6 +36,7 @@
     "graphql": "^0.12.3",
     "graphql-tag": "^2.9.2",
     "graphql-tools": "^2.14.1",
-    "mongoose": "^4.13.7"
+    "mongoose": "^4.13.7",
+    "mongoose-sequence": "^4.0.1"
   }
 }

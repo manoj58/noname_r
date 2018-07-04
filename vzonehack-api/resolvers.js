@@ -95,6 +95,20 @@ export default {
       const user = await VZUser.find(args)
       return user
     },
+    getAllEventDetails: async (parent, args, { EventDetail }) => {
+      const eventdetail = await EventDetail.find(args)
+      return eventdetail
+    },
+    
+    getAllEventPrizes: async (parent, args, { EventPrize }) => {
+      const prize = await EventPrize.find(args)
+      return prize
+    },
+    
+    getAllEventResults: async (parent, args, { EventResult }) => {
+      const eventresult = await EventResult.find(args)
+      return eventresult
+    },
   },
   Mutation: {
     addUser: async (parent, args, { User }) => {
@@ -121,6 +135,22 @@ export default {
       const registration = await new Registration(args).save()
       registration._id = registration._id.toString()
       return registration
+    },
+    
+       addEventDetail: async (parent, args, { EventDetail }) => {
+      const eventdetail = await new EventDetail(args).save()
+      eventdetail._id = eventdetail._id.toString()
+      return eventdetail
+    },
+    addEventPrize: async (parent, args, { EventPrize }) => {
+      const eventprice = await new EventPrize(args).save()
+      eventprice._id = eventprice._id.toString()
+      return eventprice
+    },
+    addEventResult: async (parent, args, { EventResult }) => {
+      const eventresult = await new EventResult(args).save()
+      eventresult._id = eventresult._id.toString()
+      return eventresult
     },
     upLikeCount: async (parent, args, { Event }) => {
       const events = await Event.find(args)

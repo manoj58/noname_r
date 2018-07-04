@@ -11,7 +11,7 @@ var EventPrizeSchema = mongoose.Schema({
 
 
 EventPrizeSchema.plugin(AutoIncrement, {inc_field: 'prizeId'});
-const EventPrize=mongoose.model('eventorize',EventPrizeSchema);
+const EventPrize=mongoose.model('eventprize',EventPrizeSchema);
 export default EventPrize
 
 

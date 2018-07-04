@@ -21,8 +21,7 @@ const schema = makeExecutableSchema({
 })
 
 
-var COMPOSE_URI='mongodb://localhost:27017/myFirstDB'
-//var COMPOSE_URI='mongodb://10.74.22.231:27017/Reactathon'
+var COMPOSE_URI='mongodb://localhost:27017/vzonehack'
 
 mongoose.connect(COMPOSE_URI , function (error) {
   if (error) console.error(error)
@@ -31,7 +30,7 @@ mongoose.connect(COMPOSE_URI , function (error) {
 
 
 
-const PORT = 3000
+const PORT = 3002
 
 const app = express()
 

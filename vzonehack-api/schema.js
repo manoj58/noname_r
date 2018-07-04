@@ -224,7 +224,7 @@ type Mutation {
   ): User!
 
   addEvent(
-  eventId: Int!,
+  eventId: Int,
   eventName: String!,
   eventType: String!,
   eventStartDate: Date!,

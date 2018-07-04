@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {EventService} from '../service/EventService';
+import {RegistrationService} from '../service/RegistrationService';
 import {CountryService} from '../service/CountryService';
 import {CarService} from '../service/CarService';
 import {NodeService} from '../service/NodeService';
@@ -40,9 +40,59 @@ export class RegisterEvents extends Component {
     super(props);
 
     this.state = {
-      selectedEvent: {}
+      selectedEvent: {},
+      teamName:'',
+      teamSize:0,
+      portfolio:'',
+      location:'',
+      stack:'',
+      poc:'',
+      teamMember:''
     }
+    this.registrationService = new RegistrationService();
+    this.onTeamName = this.onTeamName.bind(this);
+    this.onTeamSize= this.onTeamSize.bind(this);
+    this.onPortfolio = this.onPortfolio.bind(this);
+    this.onLocation = this.onLocation.bind(this);
+    this.onStack = this.onStack.bind(this);
+    this.onPoc = this.onPoc.bind(this);
+    this.onTeamMember = this.onTeamMember.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+  onTeamName(e) {
+    this.setState({teamName: e.target.value});
+}
+onTeamSize(e) {
+  this.setState({teamSize: e.target.value});
+}
+onPortfolio(e) {
+  this.setState({portfolio: e.target.value});
+}
+onLocation(e) {
+  this.setState({location: e.target.value});
+}
+onStack(e) {
+  this.setState({stack: e.target.value});
+}
+onPoc(e) {
+  this.setState({poc: e.target.value});
+}
+onTeamMember(e) {
+  this.setState({teamMember: e.target.value});
+}
+
+handleSubmit(){
+  var sTeamName=this.state.teamName;
+  var steamSize=this.state.teamSize;
+  var sportfolio=this.state.portfolio;
+  var sLocation=this.state.location;
+  var sStack=this.state.stack;
+  var sPoc=this.state.poc;
+  var sTeamMember=this.state.teamMember;
+  this.registrationService.addEventRegistration( 5,sPoc,sTeamMember,sTeamName).then(res => {this.showSuccess})
+      
+}
+
 
     render() {
        console.log(this.props.selectedEvent);
@@ -54,40 +104,40 @@ export class RegisterEvents extends Component {
       <div className="ui-g form-group">
           
           <table className="table-width-full">
-          <form onSubmit={this.handleSubmit}>
+          
          <div className="ui-g form-group">
           
     <label htmlFor="teamName">Team Name</label>
-    <input type="text" className="form-control" id="teamName" name="teamName" placeholder="Enter Team Name"/>
+    <input type="text" className="form-control" id="teamName" name="teamName" placeholder="Enter Team Name"  onChange={this.onTeamName} value={this.state.teamName} />
   </div>
   <div className="form-group">
   <label htmlFor="teamSize">Team Size</label>
-    <input type="number" className="form-control" id="teamSize" name="teamSize" placeholder="Enter Team Size"/>
+    <input type="number" className="form-control" id="teamSize" name="teamSize" placeholder="Enter Team Size" onChange={this.onTeamSize} value={this.state.teamSize}/>
   </div>
   <div className="form-group">
   <label htmlFor="portfolio">Portfolio</label>
-    <input type="text" className="form-control" id="portfolio" name="portfolio" placeholder="Enter Portfolio"/>
+    <input type="text" className="form-control" id="portfolio" name="portfolio" placeholder="Enter Portfolio" onChange={this.onPortfolio} value={this.state.portfolio}/>
   </div>
   <div className="form-group">
   <label htmlFor="location">Location</label>
-    <input type="text" className="form-control" id="location" name="location" placeholder="Enter Location"/>
+    <input type="text" className="form-control" id="location" name="location" placeholder="Enter Location" onChange={this.onLocation} value={this.state.location}/>
   </div>
   <div className="form-group">
   <label htmlFor="techStack">Technology Stack</label>
-    <textarea className="form-control" id="techStack" name="techStack" placeholder="Enter Technology Stack"/>
+    <textarea className="form-control" id="techStack" name="techStack" placeholder="Enter Technology Stack" onChange={this.onStack} value={this.state.stack}/>
   </div>
   <div className="form-group">
   <label htmlFor="teamPoc">POC</label>
-    <input type="text" className="form-control" id="teamPoc" name="teamPoc" placeholder="Enter Event POC"/>
+    <input type="text" className="form-control" id="teamPoc" name="teamPoc" placeholder="Enter Event POC" onChange={this.onPoc} value={this.state.poc}/>
   </div>
   <div className="form-group">
     <label htmlFor="teamMembers">Team Members</label>
-    <textarea className="form-control" id="teamMembers" name="teamMembers"placeholder="Team Members"/>
+    <textarea className="form-control" id="teamMembers" name="teamMembers"placeholder="Team Members" onChange={this.onTeamMember} value={this.state.teamMember} />
   </div>
 
   
-  <button type="submit" className="btn btn-danger">Submit</button>
-  </form>
+  <button type="submit" className="btn btn-danger" onClick={this.handleSubmit}>Submit</button>
+
           </table>
          
           </div></div>

@@ -1,8 +1,8 @@
-import mongoose from 'mongoose'
+import mongoose, { models } from 'mongoose'
+const  AutoIncrement= require('mongoose-sequence')(mongoose);
 
-
-const Event = mongoose.model('event', {
-  eventId: Number,
+var EventSchema = mongoose.Schema({
+  //eventId: no need,
   eventName: String,
   eventType: String,
   eventStartDate: Date,
@@ -17,7 +17,13 @@ const Event = mongoose.model('event', {
   multipleParticipationAllowed: Boolean,
   viewCount: Number,
   likesCount: Number
-})
+});
+
+
+
+EventSchema.plugin(AutoIncrement, {inc_field: 'eventId'});
+const Event=mongoose.model('event',EventSchema);
+export default Event
 
 
 
@@ -34,4 +40,4 @@ mutation CreateUSERForTest {
 
  */
 
-export default Event
+

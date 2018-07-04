@@ -22,6 +22,7 @@ import { UtilsDemo } from './components/UtilsDemo';
 import { Documentation } from "./components/Documentation";
 import { ScrollPanel } from 'primereact/components/scrollpanel/ScrollPanel';
 import { EventForm } from './components/EventForm';
+import { Reports } from './components/Reports';
 import 'primereact/resources/themes/omega/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'fullcalendar/dist/fullcalendar.css';
@@ -105,9 +106,9 @@ class App extends Component {
 
     createMenu() {
         this.menu = [
-            {label: 'Dashboard', icon: 'fa fa-fw fa-home', command: () => { window.location = '#/'}},
+           /* {label: 'Dashboard', icon: 'fa fa-fw fa-home', command: () => { window.location = '#/'}},*/
 			 {label: 'Register Event', icon: 'fa fa-fw fa-book', command: () => { window.location = "#/registerEvent"}},
-            {
+           /* {
                 label: 'Menu Modes', icon: 'fa fa-fw fa-cog',
                 items: [
                     {label: 'Static Menu', icon: 'fa fa-fw fa-bars',  command: () => this.setState({layoutMode: 'static'}) },
@@ -134,9 +135,9 @@ class App extends Component {
                     {label: 'Charts', icon: 'fa fa-fw fa-area-chart', command: () => { window.location = "#/charts"}},
                     {label: 'Misc', icon: 'fa fa-fw fa-user-secret', command: () => { window.location = "#/misc"}}
                 ]
-            },
+            },*/
             {label: 'Event Dashboard', icon: 'fa fa-fw fa-columns', command: () => { window.location = '#/eventDashboard'}},
-            {
+            /*{
                 label: 'Template Pages', icon: 'fa fa-fw fa-life-saver',
                 items: [
                     {label: 'Empty Page', icon: 'fa fa-fw fa-square-o', command: () => { window.location = "#/empty"}},
@@ -191,7 +192,8 @@ class App extends Component {
                     }
                 ]
             },
-            {label: 'Documentation', icon: 'fa fa-fw fa-book', command: () => { window.location = "#/documentation"}}
+            {label: 'Documentation', icon: 'fa fa-fw fa-book', command: () => { window.location = "#/documentation"}},*/
+            {label: 'Reports', icon: 'fa fa-fw fa-columns', command: () => { window.location = '#/reports'}}
         ];
     }
 
@@ -255,6 +257,7 @@ class App extends Component {
                     <Route path="/documentation" component={Documentation} />
                     <Route path="/registerEvents" component={RegisterEvents} />
 					<Route path="/registerEvent" component={EventForm} />
+                    <Route path="/reports" component={Reports} />
                 </div>
 
                 <AppFooter />

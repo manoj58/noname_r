@@ -19,7 +19,7 @@ export class EventDashboard extends Component {
     }
 
     componentDidMount() {
-        this.eventService.addEvent("hackday", "test", "2018-07-10T18:30:00.000Z", "2018-07-11T18:30:00.000Z", "2018-07-01T18:30:00.000Z", "2018-07-03T18:30:00.000Z", 1, 1, "test", "test", "test").then(res => console.log(res));
+        //this.eventService.addEvent("hackday", "test", "2018-07-10T18:30:00.000Z", "2018-07-11T18:30:00.000Z", "2018-07-01T18:30:00.000Z", "2018-07-03T18:30:00.000Z", 1, 1, "test", "test", "test").then(res => console.log(res));
         this.eventService.getAllEvents().then(res => this.setState({eventsData: res.getAllEvents}));
     }
 

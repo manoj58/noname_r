@@ -21,6 +21,7 @@ import { EmptyPage } from './components/EmptyPage';
 import { UtilsDemo } from './components/UtilsDemo';
 import { Documentation } from "./components/Documentation";
 import { ScrollPanel } from 'primereact/components/scrollpanel/ScrollPanel';
+import { EventForm } from './components/EventForm';
 import 'primereact/resources/themes/omega/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'fullcalendar/dist/fullcalendar.css';
@@ -105,6 +106,7 @@ class App extends Component {
     createMenu() {
         this.menu = [
             {label: 'Dashboard', icon: 'fa fa-fw fa-home', command: () => { window.location = '#/'}},
+			 {label: 'Register Event', icon: 'fa fa-fw fa-book', command: () => { window.location = "#/registerEvent"}},
             {
                 label: 'Menu Modes', icon: 'fa fa-fw fa-cog',
                 items: [
@@ -252,6 +254,7 @@ class App extends Component {
                     <Route path="/utils" component={UtilsDemo} />
                     <Route path="/documentation" component={Documentation} />
                     <Route path="/registerEvents" component={RegisterEvents} />
+					<Route path="/registerEvent" component={EventForm} />
                 </div>
 
                 <AppFooter />

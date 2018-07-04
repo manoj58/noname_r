@@ -6,9 +6,10 @@ import { AppMenu } from './AppMenu';
 import { AppInlineProfile } from './AppInlineProfile';
 import { Route } from 'react-router-dom';
 import { Dashboard } from './components/Dashboard';
-import { Reports } from './components/Reports';
 import { FormsDemo } from './components/FormsDemo';
 import { SampleDemo } from './components/SampleDemo';
+import { RegisterEvents } from './components/RegisterEvents';
+import { EventDashboard } from './components/EventsDashboard';
 import { DataDemo } from './components/DataDemo';
 import { PanelsDemo } from './components/PanelsDemo';
 import { OverlaysDemo } from './components/OverlaysDemo';
@@ -19,7 +20,6 @@ import { MiscDemo } from './components/MiscDemo';
 import { EmptyPage } from './components/EmptyPage';
 import { UtilsDemo } from './components/UtilsDemo';
 import { Documentation } from "./components/Documentation";
-import { EventDashboard } from "./components/EventDashboard";
 import { ScrollPanel } from 'primereact/components/scrollpanel/ScrollPanel';
 import 'primereact/resources/themes/omega/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -104,7 +104,7 @@ class App extends Component {
 
     createMenu() {
         this.menu = [
-            /*{label: 'Dashboard', icon: 'fa fa-fw fa-home', command: () => { window.location = '#/'}},
+            {label: 'Dashboard', icon: 'fa fa-fw fa-home', command: () => { window.location = '#/'}},
             {
                 label: 'Menu Modes', icon: 'fa fa-fw fa-cog',
                 items: [
@@ -133,6 +133,7 @@ class App extends Component {
                     {label: 'Misc', icon: 'fa fa-fw fa-user-secret', command: () => { window.location = "#/misc"}}
                 ]
             },
+            {label: 'Event Dashboard', icon: 'fa fa-fw fa-columns', command: () => { window.location = '#/eventDashboard'}},
             {
                 label: 'Template Pages', icon: 'fa fa-fw fa-life-saver',
                 items: [
@@ -188,9 +189,7 @@ class App extends Component {
                     }
                 ]
             },
-            {label: 'Documentation', icon: 'fa fa-fw fa-book', command: () => { window.location = "#/documentation"}},*/
-            {label: 'Event Dashboard', icon: 'fa fa-fw fa-table', command: () => { window.location = "#/eventDashboard"}},
-            {label: 'Reports', icon: 'fa fa-fw fa-home', command: () => { window.location = '#/reports'}}            
+            {label: 'Documentation', icon: 'fa fa-fw fa-book', command: () => { window.location = "#/documentation"}}
         ];
     }
 
@@ -239,9 +238,9 @@ class App extends Component {
 
                 <div className="layout-main">
                     <Route path="/" exact component={Dashboard} />
-                    <Route path="/reports" exact component={Reports} />
                     <Route path="/forms" component={FormsDemo} />
                     <Route path="/sample" component={SampleDemo} />
+                    <Route path="/eventDashboard" component={EventDashboard} />
                     <Route path="/data" component={DataDemo} />
                     <Route path="/panels" component={PanelsDemo} />
                     <Route path="/overlays" component={OverlaysDemo} />
@@ -252,7 +251,7 @@ class App extends Component {
                     <Route path="/empty" component={EmptyPage} />
                     <Route path="/utils" component={UtilsDemo} />
                     <Route path="/documentation" component={Documentation} />
-                    <Route path="/eventDashboard" exact component={EventDashboard} />
+                    <Route path="/registerEvents" component={RegisterEvents} />
                 </div>
 
                 <AppFooter />

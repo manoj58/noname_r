@@ -10,6 +10,9 @@ import VZUser from './vzusermodel'
 import User from './model'
 import Event from './eventmodel'
 import Registration from './registrationmodel'
+import EventDetail from './eventdetailmodel'
+import EventPrize from './eventprizemodel'
+import EventResult from './eventresultmodel'
 
 
 const env = require('dotenv').config()
@@ -39,7 +42,7 @@ app.use(cors())
 app.use(
   '/graphql',
   bodyParser.json(),
-  graphqlExpress({ schema, context: { User,Event,Registration,VZUser } })
+ graphqlExpress({ schema, context: { User,Event,Registration,VZUser,EventDetail,EventPrize,EventResult } })
 )
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))

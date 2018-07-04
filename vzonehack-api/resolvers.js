@@ -46,14 +46,7 @@ export default {
       const events = await Event.find(args)
       var resp = []
       var current = new Date().getTime()
-<<<<<<< HEAD
       //if (!events === undefined) {
-=======
-     
-     
-     // if (!events === undefined) {
-      
->>>>>>> eae22e33de918896c7191f55f5e127d5e0bc9f75
         events.map(x => {
           var start = x.eventStartDate.getTime()
           var end = x.eventEndDate.getTime()

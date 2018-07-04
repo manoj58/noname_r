@@ -123,17 +123,17 @@ export default {
       return registration
     },
     
-     addEventDetail: async (parent, args, { User }) => {
+       addEventDetail: async (parent, args, { EventDetail }) => {
       const eventdetail = await new EventDetail(args).save()
       eventdetail._id = eventdetail._id.toString()
       return eventdetail
     },
-    addEventPrize: async (parent, args, { User }) => {
+    addEventPrize: async (parent, args, { EventPrize }) => {
       const eventprice = await new EventPrize(args).save()
       eventprice._id = eventprice._id.toString()
       return eventprice
     },
-    addEventResult: async (parent, args, { User }) => {
+    addEventResult: async (parent, args, { EventResult }) => {
       const eventresult = await new EventResult(args).save()
       eventresult._id = eventresult._id.toString()
       return eventresult

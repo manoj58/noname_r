@@ -129,7 +129,7 @@ export class EventForm extends Component {
         var slocation=this.state.locations;
         var spoc=this.state.hackPoc;
         //this.eventService.addEvent(2,'test1','VDSI','2018-07-05','2018-07-10','2018-07-05','2018-07-10',1,5,"NTS","Chennai","test",0,0).then(res => this.setState({eventsData: res.getAllEvents}))
-        this.eventService.addEvent(eventID,shackName,shackType[0],sStartDate,sStartDate,snstartDate,snendDate,1,smaxSize[0],sportfolio[0],slocation[0],spoc,0,0).then(res => {this.showSuccess})
+        this.eventService.addEvent(shackName, shackType[0], sStartDate,sStartDate,snstartDate,snendDate,1,smaxSize[0],sportfolio[0],slocation[0],spoc,0,0).then(res => {this.showSuccess})
         alert(this.state.startDate);
         this.showSuccess;
     }

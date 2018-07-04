@@ -26,6 +26,25 @@ export class EventService {
                  likesCount
                }
              } `;
+        ADD_EVENT = gql`
+             mutation CreateEventQuery($eventId: Int!, $eventName: String!, $eventType: String!, $eventStartDate: Date!, $eventEndDate: Date!, $nominationStartDate: Date!, $nominationEndDate: Date!, $minTeamSize: Int!, $maxTeamSize: Int!, $eventPortfolio: String!, $eventLocation: String!, $eventPOCMail: String!) {
+                 addEvent(eventId: $eventId, eventName: $eventName, eventType: $eventType, eventStartDate: $eventStartDate, eventEndDate: $eventEndDate, nominationStartDate: $nominationStartDate, nominationEndDate: $nominationEndDate, minTeamSize: $minTeamSize, maxTeamSize: $maxTeamSize, eventPortfolio: $eventPortfolio, eventLocation: $eventLocation, eventPOCMail: $eventPOCMail, viewCount: 0, likesCount: 0) {
+                   eventId
+                   eventName
+                   eventType
+                   eventStartDate
+                   eventEndDate
+                   nominationStartDate
+                   nominationEndDate
+                   minTeamSize
+                   maxTeamSize
+                   eventPortfolio
+                   eventLocation
+                   eventPOCMail
+                   viewCount
+                   likesCount
+                 }
+               } `;
 
     getEvents() {
         return axios.get('assets/demo/data/scheduleevents.json')
@@ -36,6 +55,26 @@ export class EventService {
         console.log("Calling getAllEvents");
         return this.client.query({
             query: this.GET_EVENTS
+        }).then(results => results.data);
+    }
+
+    addEvent(eventId, eventName, eventType, eventStartDate,eventEndDate, nominationStartDate, nominationEndDate, minTeamSize, maxTeamSize, eventPortfolio, eventLocation, eventPOCMail) {
+        return this.client.mutate({
+            mutation: this.ADD_EVENT,
+            variable: {
+                "eventId": eventId,
+                "eventName": eventName,
+                "eventType": eventType,
+                "eventStartDate": eventStartDate,
+                "eventEndDate": eventEndDate,
+                "nominationStartDate": nominationStartDate,
+                "nominationEndDate": nominationEndDate,
+                "minTeamSize": minTeamSize,
+                "maxTeamSize": maxTeamSize,
+                "eventPortfolio": eventPortfolio,
+                "eventLocation": eventLocation,
+                "eventPOCMail": eventPOCMail
+            }
         }).then(results => results.data);
     }
 }

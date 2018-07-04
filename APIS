@@ -1,3 +1,23 @@
+query  getTopUpcomingEvents {
+  getTopUpcomingEvents {
+    eventId
+    eventName
+    eventType
+    eventStartDate
+    eventEndDate
+    nominationStartDate
+    nominationEndDate
+    minTeamSize
+    maxTeamSize
+    eventPortfolio
+    eventLocation
+    eventPOCMail
+    viewCount
+    likesCount
+  }
+}
+
+
 mutation upvote {
   upLikeCount(eventId: 1) {
     eventId

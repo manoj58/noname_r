@@ -177,6 +177,23 @@ type Query {
   viewCount: Int,
   likesCount: Int
   ): [Event!]!,
+
+  getTopUpcomingEvents(
+    eventId: Int,
+  eventName: String,
+  eventType: String,
+  eventStartDate: Date,
+  eventEndDate: Date,
+  nominationStartDate: Date,
+  nominationEndDate: Date,
+  minTeamSize: Int,
+  maxTeamSize: Int,
+  eventPortfolio: String,
+  eventLocation: String,
+  eventPOCMail: String,
+  viewCount: Int,
+  likesCount: Int
+  ): [Event!]!,
   getOngoingEvents(
     eventId:Int,
   eventName: String,

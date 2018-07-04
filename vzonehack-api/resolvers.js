@@ -43,6 +43,24 @@ export default {
       })
       return resp
     },
+
+    getTopUpcomingEvents: async (parent, args, { Event }) => {
+      const events = await Event.find(args).sort({viewCount: -1}).limit(5)
+    
+
+      var resp = []
+      var current = new Date().getTime()
+        events.map(x => {
+          var start = x.eventStartDate.getTime()
+          var end = x.eventEndDate.getTime()
+          if (start > current) resp.push(x)
+        })
+  
+
+        
+   
+      return resp
+    },
     getUpcomingEvents: async (parent, args, { Event }) => {
       const events = await Event.find(args)
       var resp = []

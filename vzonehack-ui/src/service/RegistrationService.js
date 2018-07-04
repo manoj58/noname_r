@@ -36,13 +36,33 @@ export class RegistrationService {
             }
         } `;
 
+    GET_EVENTID_REGISTRATION = gql`
+        query getEventIdRegistration($eventId: Int!) {
+            getEventIdRegistration(eventId: $eventId) {
+                eventId
+                teamId
+                teamName
+                pocEmail
+                teamEmail
+            }
+        } `;
+
     ADD_REGISTRATION = gql`
-             mutation CreateEventQuery($eventId: String!, $vzId: String!, $teamId: Date!, $teamName: Date!) {
+             mutation addEvent($eventId: String!, $vzId: String!, $teamId: Date!, $teamName: Date!) {
                  addEvent(eventId: $eventId, vzId: $vzId, teamId: $teamId, teamName: $teamName) {
                     eventId
                     vzId
                     teamId
                     teamName
+                 }
+               } `;
+    ADD_EVENT_REGISTRATION = gql`
+             mutation addEventRegistration($eventId: Int!, $teamName: String!, $pocEmail: String!, $teamEmail: String!) {
+                 addEventRegistration(eventId: $eventId, teamName: $teamName, pocEmail: $pocEmail, teamEmail: $teamEmail) {
+                    eventId
+                    teamName
+                    pocEmail
+                    teamEmail
                  }
                } `;
 
@@ -66,6 +86,27 @@ export class RegistrationService {
             query: this.GET_EVENT_REGISTRATION,
             variable: {
                 "eventId": eventId
+            }
+        }).then(results => results.data);
+    }
+
+    getEventIdRegistration(eventId) {
+        return this.client.query({
+            query: this.GET_EVENTID_REGISTRATION,
+            variable: {
+                "eventId": eventId
+            }
+        }).then(results => results.data);
+    }
+
+    addEventRegistration(eventId, teamName, pocEmail, teamEmail) {
+        return this.client.mutate({
+            mutation: this.ADD_EVENT_REGISTRATION,
+            variables: {
+                "eventId": eventId,
+                "teamName": teamName,
+                "pocEmail": pocEmail,
+                "teamEmail": teamEmail
             }
         }).then(results => results.data);
     }

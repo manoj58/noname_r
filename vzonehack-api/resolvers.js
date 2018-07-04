@@ -46,14 +46,14 @@ export default {
       const events = await Event.find(args)
       var resp = []
       var current = new Date().getTime()
-      if (!events === undefined) {
+      //if (!events === undefined) {
         events.map(x => {
           var start = x.eventStartDate.getTime()
           var end = x.eventEndDate.getTime()
 
           if (start > current) resp.push(x)
         })
-      }
+      //}
       return resp
     },
     getOngoingEvents: async (parent, args, { Event }) => {

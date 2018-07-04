@@ -27,6 +27,18 @@ mutation upvote {
 }
 
 
+
+--add eventregistration--
+mutation addEventRegistrationQuery {
+  addEventRegistration(eventId: 1, teamName: "no name",pocEmail :"TEST@COM",teamEmail :"TEST@COM") {
+    
+    eventId
+    teamId
+    teamName
+    pocEmail
+    teamEmail
+  }
+}
 mutation eventdetailsQuery {
   addEventDetail(eventId: 1, problemStatement: "problem sta", eventPOCMail: "kap", Rules: "no rules") {
     problemId

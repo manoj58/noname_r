@@ -122,7 +122,7 @@ export default {
       registration._id = registration._id.toString()
       return registration
     },
-    upvoteEvent: async (parent, args, { Event }) => {
+    upLikeCount: async (parent, args, { Event }) => {
       const events = await Event.find(args)
       var resp=[];
 
@@ -136,6 +136,22 @@ export default {
   
       return  events
     },
+
+    upViewCount: async (parent, args, { Event }) => {
+      const events = await Event.find(args)
+      var resp=[];
+
+      return events.map(x => {
+       
+        x.set({ viewCount: x.viewCount ? x.viewCount + 1 : 1 })
+        x.save()
+     
+       return x
+      })
+  
+      return  events
+    },
+
 
     /**createTalk: async (parent, args, { Talk }) => {
       const talk = await new Talk(args).save()

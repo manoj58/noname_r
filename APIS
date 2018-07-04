@@ -26,6 +26,18 @@ mutation upvote {
   }
 }
 
+
+mutation CreateEventQuery {
+  addEventDetail(eventId: 1, problemStatement: "problem sta", eventPOCMail: "kap", Rules: "no rules") {
+    problemId
+    eventId
+    problemStatement
+    eventPOCMail
+    Rules
+  }
+}
+
+
 --CREATEUSER--
 mutation CREATEUSERQUERY {
   addUser(

@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
-import {CarService} from '../service/CarService';
-import {NodeService} from '../service/NodeService';
 import {EventService} from '../service/EventService';
-import {OrganizationChart} from 'primereact/components/organizationchart/OrganizationChart';
 import {DataView, DataViewLayoutOptions} from 'primereact/components/dataview/DataView';
-import {Tree} from 'primereact/components/tree/Tree';
-import {TreeTable} from 'primereact/components/treetable/TreeTable';
-import {Column} from 'primereact/components/column/Column'
-import {PickList} from 'primereact/components/picklist/PickList';
-import {OrderList} from 'primereact/components/orderlist/OrderList';
-import {Schedule} from 'primereact/components/schedule/Schedule';
 import {Panel} from 'primereact/components/panel/Panel';
 import {Button} from 'primereact/components/button/Button';
 import {InputText} from 'primereact/components/inputtext/InputText';
@@ -28,6 +19,7 @@ export class EventDashboard extends Component {
     }
 
     componentDidMount() {
+        this.eventService.addEvent("hackday", "test", "2018-07-10T18:30:00.000Z", "2018-07-11T18:30:00.000Z", "2018-07-01T18:30:00.000Z", "2018-07-03T18:30:00.000Z", 1, 1, "test", "test", "test").then(res => console.log(res));
         this.eventService.getAllEvents().then(res => this.setState({eventsData: res.getAllEvents}));
     }
 

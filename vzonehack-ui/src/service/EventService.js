@@ -27,9 +27,8 @@ export class EventService {
                }
              } `;
     ADD_EVENT = gql`
-             mutation CreateEventQuery($eventId: Int!, $eventName: String!, $eventType: String!, $eventStartDate: Date!, $eventEndDate: Date!, $nominationStartDate: Date!, $nominationEndDate: Date!, $minTeamSize: Int!, $maxTeamSize: Int!, $eventPortfolio: String!, $eventLocation: String!, $eventPOCMail: String!) {
-                 addEvent(eventId: $eventId, eventName: $eventName, eventType: $eventType, eventStartDate: $eventStartDate, eventEndDate: $eventEndDate, nominationStartDate: $nominationStartDate, nominationEndDate: $nominationEndDate, minTeamSize: $minTeamSize, maxTeamSize: $maxTeamSize, eventPortfolio: $eventPortfolio, eventLocation: $eventLocation, eventPOCMail: $eventPOCMail, viewCount: 0, likesCount: 0) {
-                   eventId
+             mutation CreateEventQuery($eventName: String!, $eventType: String!, $eventStartDate: Date!, $eventEndDate: Date!, $nominationStartDate: Date!, $nominationEndDate: Date!, $minTeamSize: Int!, $maxTeamSize: Int!, $eventPortfolio: String!, $eventLocation: String!, $eventPOCMail: String!) {
+                 addEvent(eventName: $eventName, eventType: $eventType, eventStartDate: $eventStartDate, eventEndDate: $eventEndDate, nominationStartDate: $nominationStartDate, nominationEndDate: $nominationEndDate, minTeamSize: $minTeamSize, maxTeamSize: $maxTeamSize, eventPortfolio: $eventPortfolio, eventLocation: $eventLocation, eventPOCMail: $eventPOCMail, viewCount: 0, likesCount: 0) {
                    eventName
                    eventType
                    eventStartDate
@@ -152,7 +151,7 @@ export class EventService {
     getEventsbyPortfolio(portfolio) {
         return this.client.query({
             query: this.GET_EVENTS_PORTFOLIO,
-            variable: {
+            variables: {
                 "portfolio": portfolio
             }
         }).then(results => results.data);
@@ -161,17 +160,16 @@ export class EventService {
     getEventsbyLocation(location) {
         return this.client.query({
             query: this.GET_EVENT_LOCATION,
-            variable: {
+            variables: {
                 "location": location
             }
         }).then(results => results.data);
     }
 
-    addEvent(eventId, eventName, eventType, eventStartDate, eventEndDate, nominationStartDate, nominationEndDate, minTeamSize, maxTeamSize, eventPortfolio, eventLocation, eventPOCMail) {
+    addEvent(eventName, eventType, eventStartDate, eventEndDate, nominationStartDate, nominationEndDate, minTeamSize, maxTeamSize, eventPortfolio, eventLocation, eventPOCMail) {
         return this.client.mutate({
             mutation: this.ADD_EVENT,
-            variable: {
-                "eventId": eventId,
+            variables: {
                 "eventName": eventName,
                 "eventType": eventType,
                 "eventStartDate": eventStartDate,

@@ -258,9 +258,14 @@ type Mutation {
     likesCount: Int
     ): Event!
 
-  upvoteEvent(
+upLikeCount(
     eventId: Int!
   ): [Event!]!
+
+  upViewCount(
+    eventId: Int!
+  ): [Event!]!
+
 
   addRegistration(
     vzId: String!,

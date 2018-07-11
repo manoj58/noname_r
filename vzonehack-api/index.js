@@ -24,8 +24,8 @@ const schema = makeExecutableSchema({
 })
 
 
-//var COMPOSE_URI='mongodb://localhost:27017/myFirstDB'
-var COMPOSE_URI='mongodb://localhost:27017/vzonehack'
+var COMPOSE_URI='mongodb://10.118.224.124:27017/vzonehack'
+//var COMPOSE_URI='mongodb://localhost:27017/vzonehack'
 
 mongoose.connect(COMPOSE_URI , function (error) {
   if (error) console.error(error)

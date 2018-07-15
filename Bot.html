@@ -1,0 +1,220 @@
+<html> <head>
+<title>KCE BOT</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <script src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+var accessToken = "fc49ec58eb7c445f9f0d73d34d6a789e";
+//var accessToken = "6516dfd2785e4e619a70a4edb126406a";
+var subscriptionKey = "";
+var baseUrl = "https://api.api.ai/v1/"; var
+$speechInput,$recBtn,recognition,$sendBtn,$clearBtn,$chatArea,$servletcallBtn; var messageRecording="Recording...";
+var messageCouldntHear="I couldn't here you ,could you say that again"; var messageInternalError="Oh no, there has been an internal server error"; var messageSorry="I'm sorry,I dont have the answer to that yet.";
+$(document).ready(function(){ $speechInput=$("#speech"); $recBtn=$("#rec"); $sendBtn=$("#send");
+$clearBtn=$("#clear"); $chatArea=$("#chatArea"); $deleteBtn=$("#delete");
+$speechInput.val(""); $chatArea.val("");
+$speechInput.keypress(function(event){ if(event.which==13){
+event.preventDefault(); send();
+}
+}); $recBtn.on("click",function(event){
+switchRecognition(); });
+$sendBtn.on("click",function(event){ send();
+});
+$deleteBtn.on("click",function(event){
+$.get('CollegeServlet',function(data){ alert('questions deleted successfully');
+}); });
+
+$clearBtn.on("click",function(event){ $speechInput.val("");
+$chatArea.val(""); });
+$('#toggle').click(function(){ if($(this).html()=="+"){
+$(this).html('-'); }
+else{
+$(this).html('+');
+}
+$("#box").slideToggle(); });
+});
+function startRecognition(){
+recognition = new webkitSpeechRecognition(); recognition.continues = false; recognition.interimResults = false; recognition.onstart = function(event){
+respond(messageRecording); updateRec();
+};
+recognition.onresult = function(event){ recognition.onend = null;
+var text = "";
+for(var i=event.resultIndex;i<event.results.length;++i) {
+text += event.results[i][0].transcript; }
+setInput(text); stopRecognition();
+
+};
+recognition.onerror = function(event){
+respond(event); };
+recognition.onend = function(event){ respond(messageCouldntHear); stopRecognition();
+};
+recognition.lang="en"; recognition.start();
+}
+function stopRecognition(){ if(recognition){ recognition.stop(); recognition=null;
+} updateRec();
+}
+function switchRecognition(){ if(recognition){ stopRecognition();
+}else{
+
+startRecognition(); }
+}
+function setInput(text){
+$speechInput.val(text); send();
+}
+function updateRec(){ $recBtn.text(recognition?"Stop":"Speak");
+}
+function generateRandomiD(){ function s4(){
+return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+}
+return s4() +s4() +"-"+s4()+"-"+s4()+"-"+s4()+"-"+s4()+s4() +s4(); }
+function send(){
+var text = $speechInput.val();
+var content = $chatArea.val();
+if(content !=null && content !=""){ content = content +"\n\n >>> "+text;
+
+} else{
+content = " >>> "+text; }
+$chatArea.val(content);
+$chatArea[0].scrollTop = $chatArea[0].scrollHeight; $speechInput.val("");
+$.ajax({
+type :"POST",
+url : baseUrl + "query/",
+contentType : "application/json; charset=utf-8", dataType :"json",
+headers:{
+"Authorization" :"Bearer "+ accessToken, "ocp-apim-subscription-key" : subscriptionKey },
+data : JSON.stringify({
+q: text,
+lang :"en",
+sessionId: generateRandomiD() }),
+success :function(data){ prepareResponse(data);
+
+},
+error: function(){
+respond(messageInternalError); }
+});
+}
+function prepareResponse(val){
+spokenResponse = val.result.speech; respond(spokenResponse);
+}
+function respond(val){
+if(val ==null && val ==""){ val= messageSorry;
+}
+//var content = $("chatArea").val(); var content = $chatArea.val();
+var lastque =content.substring(content.lastIndexOf(">")+1 ,content.length);
+if(content !=null && content !=""){ content = content +"\n\n <<< "+val;
+
+} else{
+content ="<<< <span class='responseval'>"+val +'</span>'; }
+$chatArea.val(content);
+$chatArea[0].scrollTop = $chatArea[0].scrollHeight;
+var dbfailText = 'Sorry'; if(val.indexOf(dbfailText, 0)!== -1){
+//save to db
+var questions=lastque;
+var params='qno=1&que='+questions; $.get('CollegeServlet',params,function(data){
+}); //save to db end
+}
+if(val !== messageRecording){
+var msg = new SpeechSynthesisUtterance(); msg.voiceURI="native";
+msg.text =val;
+msg.lang ="en-US";
+window.speechSynthesis.speak(msg); }
+$("#spokenResponse").addClass("is-active").find(".spoken-response_text").html(val); }
+
+</script>
+<style type="text/css"> html{ box-sizing:border-box; }
+*,*:before,*.after{ box-sizing:inherit; }
+body{
+font-family: 'Droid Sans', Helvetica; font-size: 20px;
+margin:1; background-image:url("clg.jpeg"); background-repeat:no-repeat;
+height:100%; background-size:cover;
+border-color: #e1db8b;
+} .container{
+position: fixed;
+top: 50%;
+left: 50%;
+-webkit-transform :translate(-50%, -50%);
+}
+.topcontainer {
+background-color:white; color:white;
+
+padding: 0px 20px;
+}
+#titlebar{
+background: linear-gradient(to bottom,#a90329 0%,#8f0222 44%,#6d0019 100%) !important;
+height : 25px; width: 100%;
+}
+#toggle{ text-align:center; vertival-align:middle; border :white solid 1px; color:white; width:25px; height:23px; float:right; cursor:pointer;
+}
+#box{
+height:400px; background-color:white; }
+input{
+background:#fff;
+border : 1px solid #ccc; color:black;
+font-family:'Droid Sans', Helvetica; font-size:20px;
+
+padding :0 0.75em;
+width: 350px;
+-webkit-transition: all 0.35s ease-in;
+} input:active,input:focus,textarea:active,textarea:focus{
+outline: 1px solid #48788B; }
+.textarea{ border-color:#e1db8b
+}
+.btn{
+background:linear-gradient(to bottom,#a90329 0%,#8f0222 44%,#6d0019 100%);
+border : 1px solid rgba(119,119,119,.5); color:#fff;
+cursor:pointer;
+display: inline-block; font-family:"Titillium Web"; font-size:15px;
+font-weight: bold;
+line-height: 43px;
+padding :0 0.75em; text-align:center;
+width: 400px;
+text-transform: uppercase; width:110px;
+-webkit-transition: all 0.35s ease-in;
+}
+.btn:hover{
+background:linear-gradient(to bottom,#a90329 0%,#8f0222 44%,#6d0019 100%);
+}
+
+.spoken-response{ max-height: 0;
+overflow :hidden;
+-webkit-transition: all 0.35s ease-in; }
+.spoken-response .is-active{ max-height: 400px;
+}
+.spoken-response_text{
+border : 1px solid rgba(119,119,119,.5);
+color:#231f20;
+background:linear-gradient(to bottom,#ffffff 0%,#e5e5e5 100%); padding :lem;
+}
+</style>
+</head>
+<body>
+<h1><marquee>KARPAGAM COLLEGE OF ENGINEERING
+CHATBOT</marquee></h1> <div class="topcontainer">
+</div>
+<div class ="container">
+
+<div id="titlebar">
+<div id="toggle">-</div>
+</div>
+<div id="box">
+<textarea rows= "10" cols ="88" id="chatArea"></textarea> <br/>
+<input id="speech" type="text"><br/>
+<FORM NAME="admin" ACTION="CollegeServlet" METHOD="POST">
+<table> <tr>
+<td><img src="send.jpeg" alt="KCE lOGO" height="100" width="100"></td>
+<td><button id="send" class ="btn">Send </button></td>
+<td><img src="speak.png" alt="KCE lOGO" height="100" width="100"></td>
+<td><button id="rec" class ="btn">Speak </button></td>
+<td><img src="clear.png" alt="KCE lOGO" height="100" width="100"></td>
+<td><button id="clear" class ="btn">ClearChat </button><br></td> </tr>
+height="100" width="100"></td> value="Admin" /></td> height="100" width="100"></td>
+<tr>
+<td><img src="admin.jpeg" alt="KCE lOGO"
+<td><input class ='btn' type="submit" <td><img src="delete.jpeg" alt="KCE lOGO"
+
+<td><button id="delete" class ="btn">delete
+</button></td>
+<td><a href="https://console.dialogflow.com/api-client/#/agent/7b5e1d73-aa83-4801-aefd-
+2aabf50480ff/editIntent/59b0c4c8-9ff9-458c-af4c-4945ed3565a9/"> Add que</a></td> </tr>
+</table> </FORM>
+</div>
+</div> </body> </html>
+ 
